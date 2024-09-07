@@ -1,46 +1,53 @@
+import os
+
 import psycopg2
 
 
-def conector():
-    user = "postgres"
-    database = "postgres"
-    password = "root"
-    host = "localhost"
+class Connection:
+    def __init__(
+        self,
+        database: str = os.getenv("DATABASE", "postgres"),
+        user: str = os.getenv("PG_USER", "postgres"),
+        password: str = os.getenv("PASSWORD", "postgres"),
+        host: str = os.getenv("HOST", "localhost"),
+        port: int = int(os.getenv("PORT", "5432")),
+    ):
+        self.database = database
+        self.user = user
+        self.password = password
+        self.host = host
+        self.port = port
+        self.connection = None
 
-    conexcao = psycopg2.connect(
-        host=host,
-        database=database,
-        user=user,
-        password=password,
-    )
-    return conexcao
+    def __enter__(self):
+        self.connection = psycopg.connect(
+            dbname=self.database,
+            user=self.user,
+            host=self.host,
+            password=self.password,
+            port=self.port,
+        )
+        return self
 
+    def __exit__(self, exc_type, exc_value, traceback):
+        if self.connection:
+            try:
+                self.connection.close()
+            except Exception as e:
+                print(f"Erro ao fechar a conexão: {e}")
+                raise
 
-def exec(script_sql):
-    conexao = conector()
-    cursor = conexao.cursor()
-    try:
-        cursor.execute(script_sql)
-        conexao.commit()
-    except Exception as error:
-        print(f"[Error] - {error}")
-        conexao.rollback()
-        cursor.close()
-        return ...
-    finally:
-        cursor.close()
+    def select(self, script_sql: str, parameters: list = []):
+        with self.connection.cursor() as cursor:
+            cursor.execute(script_sql, parameters)
+            return cursor.fetchall()
 
+    def exec(self, script_sql: str, parameters: list = []):
+        with self.connection.cursor() as cursor:
+            cursor.execute(script_sql, parameters)
+            self.connection.commit()
 
-def select(script_sql):
-    try:
-        conexao = conector()
-        cur = conexao.cursor()
-        cur.execute(script_sql)
-        resultado = cur.fetchall()
-        conexao.close()
-        cur.close()
-        return resultado
-    except (Exception, psycopg2.DatabaseError) as error:
-        print("Error: %s" % error)
-        conexao.rollback()
-        cur.close()
+    def execmany(self, script_sql: str, parameters: list = []):
+        with self.connection.cursor() as cursor:
+            cursor.executemany(script_sql, parameters)
+            self.connection.commit()

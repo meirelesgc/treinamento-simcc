@@ -1,5 +1,5 @@
 import pandas as pd
-from dao import banco
+from dao.banco import Connection
 
 from pprint import pprint
 from model.pesquisador import Pesquisador
@@ -15,7 +15,8 @@ def consultar_pesquisadores():
             pesquisadores;
         """
 
-    registro = banco.select(script_sql)
+    with Connection() as conn:
+        registro = conn.select(script_sql)
 
     # Só pra saber como chega o registro do banco
     pprint(registro)
