@@ -1,10 +1,11 @@
 # Tutorial com Flask e PostgreSQL
 
-Esse tutorial mostra como fazer um crud simples usando a arquitetura MVC com Singleton.
+Esse tutorial mostra como fazer funcionar um crud simples usando a arquitetura MVC com Singleton.
+Detalhes não são explicados pois não caberia aqui, mas o código está comentado.
 
 As pastas estão organizadas de acordo com a responsabilidade de cada módulo.
 - Na pasta controller há somente arquivos relacionados com os controladores. Já que temos apenas o pesquisador como entidade nesse tutorial, temos somente controladores relacionados com ele.
- - Dentro da pasta controller também tem a pasta dao (Data Access Object), que tem somente código relacionado com a interação com o banco de dados.
+- Dentro da pasta controller também tem a pasta dao (Data Access Object), que tem somente código relacionado com a interação com o banco de dados.
 - Na pasta model temos a classe da entidade Pesquisador
 
 _____________________________________________________________
