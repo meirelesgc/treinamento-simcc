@@ -9,7 +9,9 @@ As pastas estão organizadas de acordo com a responsabilidade de cada módulo.
 
 _____________________________________________________________
 
-__> Antes de começar verifique se você tem a versão do Python acima da 3.12 e o Docker instalado.__
+>[!IMPORTANT]
+>
+>Antes de começar verifique se você tem a versão do Python acima da 3.12 e o Docker instalado.
 
 ### Passo 1
 
