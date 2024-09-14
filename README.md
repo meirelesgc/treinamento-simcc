@@ -9,17 +9,19 @@ As pastas estão organizadas de acordo com a responsabilidade de cada módulo.
 
 _____________________________________________________________
 
-### Passo 1
+__> Antes de começar verifique se você tem a versão do Python acima da 3.12 e o Docker instalado.__
+
+**### Passo 1**
 
 Rode o comando **git clone <endereco_do_repositorio>** na pasta desejada
 
-### Passo 2 
+**### Passo 2** 
 
 Crie um ambiente virtual python para não misturar as dependências desse tutorial com as bibliotecas instaladas globalmente no computador.
 
 ` python -m venv <nome_do_venv> `
 
-### Passo 3
+**### Passo 3**
 
 Depois de criar o ambiente virtual, rode o seguinte comando no terminal:
 
@@ -30,3 +32,7 @@ Depois de criar o ambiente virtual, rode o seguinte comando no terminal:
  ##### No Windows
 
 ` nome_do_ambiente\Scripts\activate.bat `
+
+**### Passo 4**
+
+Rode o arquivo `povoar_bd.py` para colocar os dados dos pesquisadores para teste no banco.
