@@ -47,3 +47,6 @@ Depois rode o arquivo `povoar_bd.py` para colocar os dados dos pesquisadores par
 Rode o arquivo `app.py` e faça as requisições GET, POST, PUT e DELETE para /pesquisadores para testar.
 A aplicação estará rodando na porta 5000. Digite `http://localhost:5000` no navegador.
 
+>[!TIP]
+>
+>Caso queira refazer tudo de novo, há um arquivo `apagar_db.py`. Basta rodar ele com o banco de dados funcionando, mas com o `app.py` parado.
