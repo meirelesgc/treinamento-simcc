@@ -37,7 +37,8 @@ Depois de criar o ambiente virtual, rode o seguinte comando no terminal:
 
 ### Passo 4
 
-Rode o arquivo `povoar_bd.py` para colocar os dados dos pesquisadores para teste no banco.
+Na raiz da aplicação, digite `docker-compose up` para subir o banco de dados pelo docker.
+Depois rode o arquivo `povoar_bd.py` para colocar os dados dos pesquisadores para teste no banco.
 
 ### Passo 5
 
