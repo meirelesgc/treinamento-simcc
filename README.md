@@ -35,6 +35,8 @@ Depois de criar o ambiente virtual, rode o seguinte comando no terminal:
 
 ` nome_do_ambiente\Scripts\activate `
 
+Após isso, rode `pip install -r requirements.txt` com o ambiente virtual ativado para instalar as dependências.
+
 ### Passo 4
 
 Na raiz da aplicação, digite `docker-compose up` para subir o banco de dados pelo docker.
