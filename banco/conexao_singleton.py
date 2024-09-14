@@ -25,8 +25,9 @@ class Conexao:
             self.__password = password
             self.__conexao = None
             self.__inicializado = True
+            print("Classe Conexao inicializada!")  # Mensagem de debug para verificar a inicialização
 
-    def conectar_ao_banco(self) -> "Conexao":
+    def conectar_ao_banco(self):
         # Conecta ao banco de dados se a conexão ainda não estiver estabelecida
         if self.__conexao is None:
             try:
@@ -44,10 +45,9 @@ class Conexao:
                 # Mensagem de erro se a conexão falhar
                 print(f"Erro ao conectar ao banco: {erro}")
 
-        return self
-
     def get_conexao(self):
         # Retorna a conexão estabelecida, criando-a se necessário
         if self.__conexao is None:
             self.conectar_ao_banco()
         return self.__conexao
+
