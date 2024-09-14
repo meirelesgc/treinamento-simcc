@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  postgres:
+    # Usa a imagem oficial do PostgreSQL
+    image: postgres
+
+    # Configura variáveis de ambiente para o contêiner do PostgreSQL
+    environment:
+      # Nome do banco de dados a ser criado no início
+      - POSTGRES_DB=postgres
+      # Nome do usuário do banco de dados
+      - POSTGRES_USER=postgres
+      # Senha para o usuário do banco de dados
+      - POSTGRES_PASSWORD=root
+      # Argumentos adicionais para a inicialização do banco de dados
+      - POSTGRES_INITDB_ARGS=--encoding=UTF8 --locale=UTF-8
+
+    # Mapeia a porta 5432 do contêiner para a porta 5432 do host
+    ports:
+      - "5432:5432"
