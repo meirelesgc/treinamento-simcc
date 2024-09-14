@@ -40,7 +40,7 @@ Após isso, rode `pip install -r requirements.txt` com o ambiente virtual ativad
 ### Passo 4
 
 Na raiz da aplicação, digite `docker-compose up` para subir o banco de dados pelo docker.
-Depois rode o arquivo `povoar_bd.py` para colocar os dados dos pesquisadores para teste no banco.
+Depois rode o arquivo `povoar_bd.py` na pasta **banco** para colocar os dados dos pesquisadores para teste no banco.
 
 ### Passo 5
 
@@ -51,4 +51,4 @@ __________________________________________
 
 >[!TIP]
 >
->Caso queira refazer tudo de novo, há um arquivo `apagar_db.py`. Basta rodar ele com o banco de dados funcionando, mas com o `app.py` parado.
+>Caso queira refazer tudo de novo, há um arquivo `apagar_db.py` na pasta **banco**. Basta rodar ele com o banco de dados funcionando, mas com o `app.py` parado.
