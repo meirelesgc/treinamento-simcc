@@ -33,7 +33,7 @@ Depois de criar o ambiente virtual, rode o seguinte comando no terminal:
 
  ##### No Windows
 
-` nome_do_ambiente\Scripts\activate.bat `
+` nome_do_ambiente\Scripts\activate `
 
 ### Passo 4
 
