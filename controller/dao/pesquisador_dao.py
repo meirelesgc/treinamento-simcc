@@ -23,8 +23,7 @@ def salvar_novo_pesquisador(nome: str, lattes_id: str, pesquisadores_id: str) ->
     except Exception as e:
         # Se ocorrer uma exceção, reverte a transação
         conexao.rollback()
-        return f"Erro ao salvar novo pesquisador: {e}"
-
+        return f"Erro ao salvar: {e}"
 # Função para listar todos os pesquisadores do banco de dados
 def listar_todos() -> str:
     # SQL para selecionar todos os registros da tabela "pesquisadores"
@@ -56,6 +55,10 @@ def atualizar_por_id(nome: str, pesquisadores_id: str, lattes_id: str) -> str:
         # Utiliza a conexão para abrir um cursor e executar o SQL
         with conexao.cursor() as cursor:
             cursor.execute(sql, (nome, pesquisadores_id, lattes_id))
+            
+            if (cursor.rowcount < 0):
+                raise Exception()
+            
             # Confirma a transação no banco
             conexao.commit()
             
@@ -77,11 +80,15 @@ def apagar_por_lattes_id(lattes_id: str) -> str:
         # Utiliza a conexão para abrir um cursor e executar o SQL
         with conexao.cursor() as cursor:
             cursor.execute(sql, (lattes_id,))
-            # Confirma a transação no banco
-            conexao.commit()
+            
+            if (cursor.rowcount > 0):
+                # Confirma a transação no banco
+                conexao.commit()
+            else:
+                raise Exception()
             
             return "Pesquisador apagado com sucesso!"
     except Exception as e:
         # Se ocorrer uma exceção, reverte a transação
         conexao.rollback()
-        return f"Erro ao excluir pesquisador: {e}"
+        return f"Erro ao apagar pesquisador. Pesquisador inexistente ou ID inválido."

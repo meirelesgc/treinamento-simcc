@@ -12,7 +12,7 @@ pesquisador_controller = Blueprint('pesquisador_controller', __name__)
 @swag_from({
     'responses': {
         200: {
-            'description': 'Pesquisador salvo com sucesso',
+            'description': 'OK \n\n`Pesquisador salvo com sucesso`',
             'schema': {
                 'type': 'object',
                 'properties': {
@@ -23,7 +23,10 @@ pesquisador_controller = Blueprint('pesquisador_controller', __name__)
             }
         },
         400: {
-            'description': 'Dados inválidos'
+            'description': 'BAD REQUEST \n\n`Ocorre quando os dados estão incompletos, faltando algum campo ou formato do dado está inconsistente, como  quando um campo requer no mínimo 5 caracteres e colocamos menos que isso.`'
+        },
+        409: {
+            'description': 'CONFLICT \n\n`Ocorre quando o lattes_id ou o ID do pesquisador informado já existe`'
         }
     },
     'parameters': [
@@ -57,7 +60,12 @@ def adicionar() -> str:
         )
         
         # Retorna a resposta como JSON
-        return jsonify(resposta)
+        if ('duplicate' in resposta):
+            return jsonify(resposta), 409
+        if ('Erro' in resposta):
+            return jsonify(resposta), 400
+        
+        return jsonify(resposta), 200
     
     except ValidationError as e:
         # Retorna o erro de validação como JSON, com código de erro 400
@@ -69,7 +77,7 @@ def adicionar() -> str:
 @swag_from({
     'responses': {
         200: {
-            'description': 'Lista de todos os pesquisadores',
+            'description': 'OK \n\n`Lista todos os pesquisadores`',
             'schema': {
                 'type': 'array',
                 'items': {
@@ -97,13 +105,16 @@ def listar() -> str:
 @swag_from({
     'responses': {
         200: {
-            'description': 'Pesquisador apagado com sucesso',
+            'description': 'OK \n\n`Pesquisador apagado com sucesso!`',
             'schema': {
                 'type': 'object',
                 'properties': {
-                    'message': {'type': 'string'}
+                    'lattes_id': {'type': 'string'},
                 }
             }
+        },
+        400: {
+            'description': 'BAD REQUEST \n\n`Pesquisador não encontrado ou ID inválido`'
         }
     },
     'parameters': [
@@ -121,7 +132,10 @@ def apagar(lattes_id: str) -> str:
     resposta = apagar_por_lattes_id(lattes_id)
     
     # Retorna a resposta como JSON
-    return jsonify(resposta)
+    if ('inválido' in resposta):
+        return jsonify(resposta), 400
+    
+    return jsonify(resposta), 200
 
 
 # Rota para atualizar um pesquisador com base no lattes_id
@@ -129,7 +143,7 @@ def apagar(lattes_id: str) -> str:
 @swag_from({
     'responses': {
         200: {
-            'description': 'Pesquisador atualizado com sucesso',
+            'description': 'OK \n\n`Pesquisador atualizado com sucesso`',
             'schema': {
                 'type': 'object',
                 'properties': {
@@ -140,7 +154,7 @@ def apagar(lattes_id: str) -> str:
             }
         },
         400: {
-            'description': 'Erro de validação'
+            'description': 'BAD REQUEST \n\n`Dados inconsistentes`'
         }
     },
     'parameters': [
@@ -174,6 +188,10 @@ def atualizar(lattes_id: str) -> str:
         )
         
         # Retorna a resposta como JSON
+        
+        if ('Erro' in resposta):
+            return jsonify(resposta), 400
+        
         return jsonify(resposta)
     
     except ValidationError as e:
