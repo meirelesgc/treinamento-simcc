@@ -12,7 +12,7 @@ _____________________________________________________________
 
 >[!IMPORTANT]
 >
->Antes de começar verifique se você tem a versão do Python acima da 3.12 e o Docker instalado.
+>Antes de começar verifique se você tem a versão do Python acima da 3.12 e o Docker instalado. Você pode instalar no ambiente virtual, se preferir. Este tutorial não cobre a instalação do Python e suas dependências, pois os comandos podem ser diferentes dependendo da instalação.
 
 ### Passo 1
 
@@ -23,6 +23,12 @@ Rode o comando **git clone <endereco_do_repositorio>** na pasta desejada
 Crie um ambiente virtual python para não misturar as dependências desse tutorial com as bibliotecas instaladas globalmente no computador.
 
 ` python -m venv <nome_do_venv> `
+
+ou
+
+` python3 -m venv <nome_do_venv> `
+
+Vai depender da sua instalação do python.
 
 ### Passo 3
 
@@ -36,7 +42,7 @@ Depois de criar o ambiente virtual, rode o seguinte comando no terminal:
 
 ` nome_do_ambiente\Scripts\activate `
 
-Após isso, rode `pip install -r requirements.txt` com o ambiente virtual ativado para instalar as dependências.
+Após isso, entre na pasta do tutorial e rode `pip install -r requirements.txt` com o ambiente virtual ativado para instalar as dependências.
 
 ### Passo 4
 
