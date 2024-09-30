@@ -12,7 +12,7 @@ _____________________________________________________________
 
 >[!IMPORTANT]
 >
->Antes de começar verifique se você tem a versão do Python acima da 3.12 e o Docker instalado. Você pode instalar no ambiente virtual, se preferir.
+>Antes de começar verifique se você tem a versão do Python acima da 3.12 e o Docker instalado. Você pode instalar no ambiente virtual, se preferir. Este tutorial não cobre a instalação do python e suas dependências.
 
 ### Passo 1
 
