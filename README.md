@@ -24,6 +24,12 @@ Crie um ambiente virtual python para não misturar as dependências desse tutori
 
 ` python -m venv <nome_do_venv> `
 
+ou
+
+` python3 -m venv <nome_do_venv> `
+
+Vai depender da sua instalação do python.
+
 ### Passo 3
 
 Depois de criar o ambiente virtual, rode o seguinte comando no terminal:
