@@ -51,8 +51,8 @@ Depois rode o arquivo `povoar_bd.py` na pasta **banco** para colocar os dados do
 
 ### Passo 5
 
-Rode o arquivo `app.py` e faça as requisições GET, POST, PUT e DELETE para /pesquisadores para testar.
-A aplicação estará rodando na porta 5000. Digite `http://localhost:8000` no navegador.
+Rode o arquivo `app.py` e faça as requisições GET, POST, PUT e DELETE para **/pesquisadores** para testar.
+A aplicação estará rodando na porta 8000. Digite `http://localhost:8000` no navegador.
 
 Use o comando para rodar a aplicação:
 
