@@ -58,7 +58,7 @@ Use o comando para rodar a aplicação:
 
 ` uvicorn app:app --reload `
 
-O primeiro **app** em "app:app --reload" se refere ao nome do arquivo principal. Portanto se seu arquivo estivesse como main, você usaria "main:app --reload". 
+O primeiro **app** em "app:app --reload" se refere ao nome do arquivo principal. Portanto, se seu arquivo estivesse como 'main', você usaria "main:app --reload". 
 
 __________________________________________
 
