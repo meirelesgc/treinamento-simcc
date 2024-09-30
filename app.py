@@ -1,14 +1,15 @@
-from flask import Flask
-from flasgger import Swagger
-from controller.pesquisador_controller import pesquisador_controller
+from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
+from fastapi import Request
+from controller.pesquisador_controller import pesquisador_router
 
-app = Flask(__name__)
+app = FastAPI()
 
-# Configura o Swagger
-swagger = Swagger(app)
+# Inclui o router de pesquisadores
+app.include_router(pesquisador_router)
 
-@app.route("/", methods=["GET"])
-def index():
+@app.get("/", response_class=HTMLResponse)
+async def index():
     return """
         <!DOCTYPE html>
 <html lang="pt-br">
@@ -44,10 +45,10 @@ def index():
         <div style="display: flex; width: 100%; column-gap: 20px;">
             <p class="card" style="width: 50%; padding: 20px; box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.363); border-radius: 10px; font-size: 20px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">
                 Este tutorial é uma aplicação de um CRUD (Create, Read, Update, Delete) simples com API documentada.<br /><br />
-                Clique <a target="_blank" style="color: blue; text-decoration: none; background-color: white; padding: 5px 8px; border-radius: 5px;" href="/apidocs">AQUI</a> para acessar a documentação.
+                Clique <a target="_blank" style="color: blue; text-decoration: none; background-color: white; padding: 5px 8px; border-radius: 5px;" href="/docs">AQUI</a> para acessar a documentação.
             </p>
             <p class="card" style="width: 50%; padding: 20px; font-size: 18px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; border-radius: 10px; box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.363); overflow-wrap: break-word">
-                Já estão salvos no banco uma lista de pesquisadores que você adicionou quando rodou o script <span style="background-color: rgba(183, 183, 183, 0.796); border-radius: 3px; padding: 3px; font-family: 'Courier New', Courier, monospace;">povoar_bd.py</span>. Você consegue ver o json normalmente digitando no navegador: <a style="display: block; margin: 20px;" target="_blank" href="/pesquisadores">http://localhost:5000/pesquisadores</a>Mas para adicionar um novo pesquidor, atualizar ou excluir, use o ThunderClient ou PostMan (Extensões no VSCode).
+                Já estão salvos no banco uma lista de pesquisadores que você adicionou quando rodou o script <span style="background-color: rgba(183, 183, 183, 0.796); border-radius: 3px; padding: 3px; font-family: 'Courier New', Courier, monospace;">povoar_bd.py</span>. Você consegue ver o json normalmente digitando no navegador: <a style="display: block; margin: 20px;" target="_blank" href="/pesquisadores">http://localhost:8000/pesquisadores</a> Mas para adicionar um novo pesquisador, atualizar ou excluir, use o ThunderClient ou PostMan (Extensões no VSCode).
             </p>
         </div>
         
@@ -58,7 +59,7 @@ def index():
             </p>
             
             <p class="card" style="width: 50%; padding: 20px; font-size: 18px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; border-radius: 10px; box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.363);">
-                A API retorna os códigos <strong>200</strong>, <strong>400</strong> e <strong>409</strong>. O primeiro (200) significa que a requisição foi feita normalmente e não retornou nenhumm erro. O segundo (400) signifca que o cliente (navegador que você está usando) enviou uma requisição mal formada (BAD REQUEST) que não está no formato que o servidor espera. O terceiro (409) significa que houve conflito ao salvar um novo pesquisador, pois já existe um pesquisador com o ID informado. A família de erros <strong>400</strong> está relacionanda com o lado do cliente, ou seja, quando  o cliente envia solicitações em um formato que o servidor não aceita.
+                A API retorna os códigos <strong>200</strong>, <strong>400</strong> e <strong>409</strong>. O primeiro (200) significa que a requisição foi feita normalmente e não retornou nenhum erro. O segundo (400) significa que o cliente (navegador que você está usando) enviou uma requisição mal formada (BAD REQUEST) que não está no formato que o servidor espera. O terceiro (409) significa que houve conflito ao salvar um novo pesquisador, pois já existe um pesquisador com o ID informado. A família de erros <strong>400</strong> está relacionada com o lado do cliente, ou seja, quando o cliente envia solicitações em um formato que o servidor não aceita.
             </p>
         </div>
         
@@ -67,14 +68,6 @@ def index():
 </html>
     """
 
-
-@app.route("/test", methods=["GET"])
-def test():
+@app.get("/test")
+async def test():
     return "API is working!"
-
-
-# Registra o Blueprint do controlador de pesquisadores
-app.register_blueprint(pesquisador_controller)
-
-if __name__ == "__main__":
-    app.run(debug=True)

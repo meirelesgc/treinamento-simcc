@@ -1,27 +1,7 @@
-class Pesquisador:
-    # Atributos privados
-    __pesquisador_id: int
-    __nome: str
-    __lattes: str
+from pydantic import BaseModel, Field
+
+class Pesquisador(BaseModel):
+    lattes_id: str = Field(..., min_length=15, max_length=15)
+    nome: str = Field(..., min_length=2, max_length=70)
+    pesquisadores_id: str = Field(..., min_length=36, max_length=36)
     
-    def __init__(self, pesquisador_id: int = None, nome: str = None, lattes: str = None):
-        # Inicializa os atributos da classe com os valores fornecidos
-        self.__pesquisador_id = pesquisador_id
-        self.__nome = nome
-        self.__lattes = lattes
-        
-    def json(self) -> dict:
-        """
-        Converte o objeto Pesquisador em um dicionário JSON.
-        
-        Returns:
-            dict: Um dicionário representando o pesquisador, com os atributos pesquisador_id, nome e lattes.
-        """
-        # Cria um dicionário com os atributos do pesquisador
-        pesquisador = {
-            'pesquisador_id': self.__pesquisador_id,
-            'nome': self.__nome,
-            'lattes': self.__lattes
-        }
-        
-        return pesquisador
