@@ -52,7 +52,13 @@ Depois rode o arquivo `povoar_bd.py` na pasta **banco** para colocar os dados do
 ### Passo 5
 
 Rode o arquivo `app.py` e faça as requisições GET, POST, PUT e DELETE para /pesquisadores para testar.
-A aplicação estará rodando na porta 5000. Digite `http://localhost:5000` no navegador.
+A aplicação estará rodando na porta 5000. Digite `http://localhost:8000` no navegador.
+
+Use o comando para rodar a aplicação:
+
+` uvicorn app:app --reload `
+
+O primeiro **app** em "app:app --reload" se refere ao nome do arquivo principal. Portanto, se seu arquivo estivesse como 'main', você usaria "main:app --reload". 
 
 __________________________________________
 
