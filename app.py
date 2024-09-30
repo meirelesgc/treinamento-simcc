@@ -67,7 +67,3 @@ async def index():
 </body>
 </html>
     """
-
-@app.get("/test")
-async def test():
-    return "API is working!"
