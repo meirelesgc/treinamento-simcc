@@ -14,8 +14,6 @@ As pastas estão organizadas de acordo com a responsabilidade de cada módulo.
 > [!IMPORTANT]
 >
 > Antes de começar verifique se você tem a versão do Python acima da 3.12 e o Docker instalado. Você pode instalar no ambiente virtual, se preferir. Este tutorial não cobre a instalação do Python e suas dependências, pois os comandos podem ser diferentes dependendo da instalação.
->
-> O endpoint de apagar só funciona usando o lattes_id de um pesquisador novo adicionado após rodar a aplicação. Com o lattes_id dos pesquisadores previamente cadastrados não está funcionando.
 
 ### Passo 1
 
